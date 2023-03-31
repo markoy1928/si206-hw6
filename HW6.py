@@ -23,8 +23,14 @@ def load_json(filename):
         if the cache exists, a dict with loaded data
         if the cache does not exist, an empty dict
     '''
+    try:
+        with open(filename, 'r') as f:
+            d = json.loads(f.read())
+            f.close()
+    except:
+        d = {}
 
-    pass
+    return d
 
 def write_json(filename, dict):
     '''
