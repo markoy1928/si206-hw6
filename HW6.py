@@ -32,6 +32,7 @@ def load_json(filename):
 
     return d
 
+
 def write_json(filename, dict):
     '''
     Encodes dict into JSON format and writes
@@ -49,8 +50,10 @@ def write_json(filename, dict):
     None
         does not return anything
     '''  
+    with open(filename, 'w') as f:
+        json.dump(dict, f)
+        f.close()
 
-    pass
 
 def get_swapi_info(url, params=None):
     '''
@@ -71,6 +74,7 @@ def get_swapi_info(url, params=None):
 
     pass
 
+
 def cache_all_pages(people_url, filename):
     '''
     1. Checks if the page number is found in the dict return by `load_json`
@@ -88,6 +92,7 @@ def cache_all_pages(people_url, filename):
 
     pass
 
+
 def get_starships(filename):
     '''
     Access the starships url for each character (if any) and pass it to the get_swapi_info function 
@@ -104,6 +109,7 @@ def get_starships(filename):
     '''
 
     pass
+
 
 #################### EXTRA CREDIT ######################
 
