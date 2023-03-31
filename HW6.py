@@ -127,8 +127,18 @@ def get_starships(filename):
     dict: dictionary with the character's name as a key and a list of the name their 
     starships as the value
     '''
-
-    pass
+    d = {}
+    people = load_json(filename)
+    for _, results in people.items():
+        for person in results:
+            if len(person['starships']) > 0:
+                d[person['name']] = []
+                for url in person['starships']:
+                    x = get_swapi_info(url)
+                    if x is not None:
+                        d[person['name']].append(x['name'])
+    
+    return d
 
 
 #################### EXTRA CREDIT ######################
@@ -149,8 +159,9 @@ def calculate_bmi(filename):
     -------
     dict: dictionary with the name as a key and the BMI as the value
     '''
+    people = load_json(filename)
+    for _, result in people.items():
 
-    pass
 
 class TestHomework6(unittest.TestCase):
     def setUp(self):
