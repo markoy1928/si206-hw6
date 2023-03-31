@@ -100,8 +100,17 @@ def cache_all_pages(people_url, filename):
     filename(str): the name of the file to write a cache to
         
     '''
+    d = {}
+    page = 1
+    while True:
+        if ("page " + str(page)) not in load_json(filename):
+            x = get_swapi_info(people_url, {"page": page})
+            if x is None or x == {"detail": "Not found"}:
+                break
+            d["page " + str(page)] = x["results"]
+            write_json(filename, d)
+        page += 1
 
-    pass
 
 
 def get_starships(filename):
